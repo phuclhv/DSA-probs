@@ -1,2 +1,2 @@
 # DSA probs
-Some DSA problems. 
+Solutions to some Data Structures and Algorithms question.
