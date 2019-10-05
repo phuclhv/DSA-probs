@@ -17,7 +17,6 @@ def primeFactor(value):
 
   currNum = 3
   res = value
-  maxFactor = int(math.sqrt(value))
   while value != 1:
     if checkPrime(currNum):
       primeArr.append(currNum)
