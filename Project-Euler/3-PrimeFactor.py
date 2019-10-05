@@ -6,8 +6,7 @@ What is the largest prime factor of the number 600851475143 ?
 '''
 import math
 def primeFactor(value):
-  primeArr = []
-  primeFactor = []
+  primeArr = [2]
   def checkPrime(num):
     for i in range(len(primeArr)):
       if num % primeArr[i] == 0:
@@ -16,20 +15,17 @@ def primeFactor(value):
         return True
     return True
 
-  currNum = 2
+  currNum = 3
+  res = value
+  maxFactor = int(math.sqrt(value))
   while value != 1:
     if checkPrime(currNum):
       primeArr.append(currNum)
-      print(primeArr)
-      currNum += int(round(math.sqrt(currNum)))
       while (value % currNum == 0):
-        primeFactor.append(currNum)
-        value = int(value/currNum)
-        print(value)
-    else:
-      currNum += 1
-  
-  return primeFactor
+        value = value // currNum
+        res = currNum
+    currNum += 2
+  return res
 
 print(primeFactor(600851475143))
       
