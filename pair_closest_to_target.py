@@ -1,6 +1,7 @@
 
 '''
-Two lists were given. Each list contains elements in the form of an array, [x, y], where x represents the id, and y represents the value. Return all pairs with their ids whose sum of values are closest to maxValue, but not greater than maxValue. (Runtime cannot be n^2)
+Two lists were given. Each list contains elements in the form of an array, [x, y], where x represents the id, and y represents the value. 
+Return all pairs with their ids whose sum of values are closest to maxValue, but not greater than maxValue. (Runtime cannot be n^2)
 Input:
 List1: [[1, 2], [2, 4], [3, 5]]
 List2: [[1, 1], [2, 7], [3, 2]]
