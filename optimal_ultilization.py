@@ -48,7 +48,7 @@ Output: [[1, 3], [3, 2]]
 '''
 
 
-def findPairs(a, b, target):
+def find_pairs(a, b, target):
     a.sort(key=lambda x: x[1])
     b.sort(key=lambda x: x[1])
 
@@ -57,21 +57,20 @@ def findPairs(a, b, target):
     curDiff = float('inf')
 
     while left < len(a) and right >= 0:
-        indexA, valueA = a[left]
-        indexB, valueB = b[right]
-        print(left,right, curDiff)
+        index_a, value_a = a[left]
+        index_b, value_b = b[right]
 
-        if target - valueA - valueB == curDiff:
-            ans.append([indexA, indexB])
-        elif valueA + valueB <= target and target - valueA - valueB < curDiff:
+        if target - value_a - value_b == curDiff:
+            ans.append([index_a, index_b])
+        elif value_a + value_b <= target and target - value_a - value_b < curDiff:
             ans.clear()
-            ans.append([indexA, indexB])
-            curDiff = target - valueA - valueB
+            ans.append([index_a, index_b])
+            curDiff = target - value_a - value_b
 
-        if target > valueA + valueB:
+        if target > value_a + value_b:
             left += 1
         else:
-            if target == valueA + valueB:
+            if target == value_a + value_b:
                 tmp_l = left
                 while a[tmp_l][1] + b[right][1] == target:
                     tmp_l += 1
@@ -81,44 +80,44 @@ def findPairs(a, b, target):
                         ans.append([a[tmp_l][0], b[right][0]])
             right -= 1
 
-    ans.sort(key=lambda x: x[1])
-    ans.sort(key=lambda x: x[0])
+    #ans.sort(key=lambda x: x[1])
+    #ans.sort(key=lambda x: x[0])
     return ans
 
-'''
+
 # test 1
 a = [[1, 2], [2, 4], [3, 6]]
 b = [[1, 2]]
 target = 7
 expected = [[2, 1]]
-# print(findPairs(a, b, target))
-assert findPairs(a, b, target) == expected
+# print(find_pairs(a, b, target))
+assert find_pairs(a, b, target) == expected
 
 # test 2
 a = [[1, 8], [2, 7], [3, 14]]
 b = [[1, 5], [2, 10], [3, 14]]
 target = 20
 expected = [[3, 1]]
-#print(findPairs(a, b, target))
-assert findPairs(a, b, target) == expected
+#print(find_pairs(a, b, target))
+assert find_pairs(a, b, target) == expected
 
 # test 3
 a = [[1, 8], [2, 15], [3, 9]]
 b = [[1, 8], [2, 11], [3, 12]]
 target = 20
 expected = [[1, 3], [3, 2]]
-#print(findPairs(a, b, target))
-assert findPairs(a, b, target) == expected
+#print(find_pairs(a, b, target))
+assert find_pairs(a, b, target) == expected
 
 # test 4
 a = [ [1, 5], [2, 5] ]
 b = [ [1, 5], [2, 5] ]
 target = 10
 expected = [[1, 1], [1, 2], [2, 1], [2, 2]]
-#print(findPairs(a, b, target))
-assert findPairs(a, b, target) == expected
-    '''
-a, b, target = [[1, 5], [2, 5]], [[1, 5], [2, 5]], 10
-expected = [[1, 1], [1, 2], [2, 1], [2, 2]]
-print(findPairs(a, b, target))
-assert findPairs(a, b, target) == expected
+#print(find_pairs(a, b, target))
+assert find_pairs(a, b, target) == expected
+ 
+#a, b, target = [[1, 5], [2, 5]], [[1, 5], [2, 5]], 10
+#expected = [[1, 1], [1, 2], [2, 1], [2, 2]]
+#print(find_pairs(a, b, target))
+#assert find_pairs(a, b, target) == expected
