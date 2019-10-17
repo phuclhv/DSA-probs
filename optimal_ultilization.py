@@ -54,18 +54,18 @@ def find_pairs(a, b, target):
 
     left, right = 0, len(b) - 1
     ans = []
-    curDiff = float('inf')
+    cur_diff = float('inf')
 
     while left < len(a) and right >= 0:
         index_a, value_a = a[left]
         index_b, value_b = b[right]
 
-        if target - value_a - value_b == curDiff:
+        if target - value_a - value_b == cur_diff:
             ans.append([index_a, index_b])
-        elif value_a + value_b <= target and target - value_a - value_b < curDiff:
+        elif value_a + value_b <= target and target - value_a - value_b < cur_diff:
             ans.clear()
             ans.append([index_a, index_b])
-            curDiff = target - value_a - value_b
+            cur_diff = target - value_a - value_b
 
         if target > value_a + value_b:
             left += 1
@@ -80,8 +80,8 @@ def find_pairs(a, b, target):
                         ans.append([a[tmp_l][0], b[right][0]])
             right -= 1
 
-    #ans.sort(key=lambda x: x[1])
-    #ans.sort(key=lambda x: x[0])
+    ans.sort(key=lambda x: x[1])
+    ans.sort(key=lambda x: x[0])
     return ans
 
 
@@ -90,7 +90,6 @@ a = [[1, 2], [2, 4], [3, 6]]
 b = [[1, 2]]
 target = 7
 expected = [[2, 1]]
-# print(find_pairs(a, b, target))
 assert find_pairs(a, b, target) == expected
 
 # test 2
@@ -98,7 +97,6 @@ a = [[1, 8], [2, 7], [3, 14]]
 b = [[1, 5], [2, 10], [3, 14]]
 target = 20
 expected = [[3, 1]]
-#print(find_pairs(a, b, target))
 assert find_pairs(a, b, target) == expected
 
 # test 3
@@ -106,7 +104,6 @@ a = [[1, 8], [2, 15], [3, 9]]
 b = [[1, 8], [2, 11], [3, 12]]
 target = 20
 expected = [[1, 3], [3, 2]]
-#print(find_pairs(a, b, target))
 assert find_pairs(a, b, target) == expected
 
 # test 4
@@ -114,7 +111,6 @@ a = [ [1, 5], [2, 5] ]
 b = [ [1, 5], [2, 5] ]
 target = 10
 expected = [[1, 1], [1, 2], [2, 1], [2, 2]]
-#print(find_pairs(a, b, target))
 assert find_pairs(a, b, target) == expected
  
 #a, b, target = [[1, 5], [2, 5]], [[1, 5], [2, 5]], 10
