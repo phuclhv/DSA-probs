@@ -4,29 +4,38 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+from collections import deque
 class Solution:
-  def zigzagLevelOrder(self, root) -> int:
-    nodes_in_level = []
-  
-    def dfs(node, level):
-      if not node:
-        return
-      nonlocal nodes_in_level
+    def zigzagLevelOrder(self, root) -> int:
+        if not root:
+            return []
+        nodes_in_level = []
       
-      if level >= len(nodes_in_level):
-        nodes_in_level.append([])
-          
-      nodes_in_level[level].append(node.val)
-      if level % 2 == 1:
-        dfs(node.left, level + 1)
-        dfs(node.right, level + 1)
-      else:
-        dfs(node.right, level + 1)
-        dfs(node.left, level + 1)
+        def bfs(nodes):
+            nonlocal nodes_in_level
             
-    dfs(root,0)
-      
-    return nodes_in_level
-      
+            nodes_in_nex_level = []
+            vals_in_cur_level = []
+            
+            for node in nodes:
+                vals_in_cur_level.append(node.val)
+                if len(nodes_in_level) % 2 == 0:
+                    if node.left:
+                        nodes_in_nex_level.append(node.left)
+                    if node.right:
+                        nodes_in_nex_level.append(node.right)
+                else:
+                    if node.right:
+                        nodes_in_nex_level.append(node.right)
+                    if node.left:
+                        nodes_in_nex_level.append(node.left)
+            
+            nodes_in_level.append(vals_in_cur_level)
+            if len(nodes_in_nex_level) > 0:
+                bfs(nodes_in_nex_level[::-1])
+        
+        bfs([root])
+        
+        return nodes_in_level
+        
         
